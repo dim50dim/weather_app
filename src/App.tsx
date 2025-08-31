@@ -1,6 +1,6 @@
 import axios from "axios"
 function App() {
-const url =  `https://api.openweathermap.org/data/2.5/weather?q=dallas&appid=f49fe35ac16f22b774068f82b5cecaa7`
+const url =  `https://api.openweathermap.org/data/2.5/weather?q=dallas&appid={}`
 
   return (
     <>
