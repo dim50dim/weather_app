@@ -1,32 +1,84 @@
 import axios from "axios"
-function App() {
-const url =  `https://api.openweathermap.org/data/2.5/weather?q=dallas&appid={}`
+import { useState } from "react";
 
+const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
+
+  interface WeatherData {
+  weather: { description: string; icon: string }[];
+  main: {
+    temp: number;
+    feels_like: number;
+    temp_min: number;
+    temp_max: number;
+    pressure: number;
+    humidity: number;
+  };
+  wind:{
+    speed:number;
+  }
+  name:string;
+}  
+function App() {
+  // const [data,setDate] = useState({})
+  const [weather, setWeather] = useState<WeatherData | null>(null);
+
+  const [location,setLocation] = useState('');
+
+const url =  `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${API_KEY}`
+
+  const searchLocation = (e : React.KeyboardEvent<HTMLInputElement>) => {
+       if(e.key === 'Enter'){
+           axios.get(url).then((response) => {
+      setWeather(response.data);
+      console.log(response.data);
+      
+    })
+    setLocation('')
+       }
+  }
   return (
     <>
        <div className="app">
+          <div className="search">
+            <input 
+            onChange={(e) => setLocation(e.target.value)}
+             type="text" 
+              value={location}
+              placeholder="Enter city"
+              className="text-4xl text-center"
+              onKeyDown={searchLocation}
+              />
+          </div>
            <div className="container">
              <div className="top">
                 <div className="location">
-                  <p>Dallas</p>
+                  <p>{weather?.name}</p>
              </div>
               <div className="temp">
-                   <h1>60F</h1>
+                   <h1 className="font-bold"> {weather?.main.temp.toFixed()}  </h1>
               </div>
               <div className="description">
-                <p>Clouds</p>
+                <p>{weather?.weather[0].main}</p>
               </div>
-             <div className="bottom">
+
+              {weather?.name !=undefined &&
+                   <div className="bottom">
               <div className="feels">
-                   <p>65F</p>
+                   <p className="font-bold">{weather?.main.feels_like.toFixed()}</p>
+                   <p>Feels Like </p>
+
               </div>
               <div className="humidity">
-                <p>20%</p>
+                <p className="font-bold">{weather?.main.humidity.toFixed()}</p>
+                <p>Humidity  </p>
               </div>
               <div className="wind">
-                <p>12MPH</p>
+                < p className="font-bold"> {weather?.wind.speed.toFixed()}</p>
+                <p>Wind Speed</p>
               </div>
              </div>
+              }
+        
            </div>
       </div> 
       </div>
