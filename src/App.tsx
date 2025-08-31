@@ -4,7 +4,7 @@ import { useState } from "react";
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
   interface WeatherData {
-  weather: { description: string; icon: string }[];
+  weather: {main:string; description: string; icon: string }[];
   main: {
     temp: number;
     feels_like: number;
