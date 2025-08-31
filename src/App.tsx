@@ -81,6 +81,7 @@ const url =  `https://api.openweathermap.org/data/2.5/weather?q=${location}&unit
                 < p className="font-bold"> {weather?.wind.speed.toFixed()}</p>
                 <p>Wind Speed</p>
               </div>
+             
              </div>
               }
         
