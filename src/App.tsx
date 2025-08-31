@@ -17,6 +17,7 @@ const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
     speed:number;
   }
   name:string;
+  
 }  
 function App() {
   
@@ -58,7 +59,7 @@ const url =  `https://api.openweathermap.org/data/2.5/weather?q=${location}&unit
                    <h1 className="font-bold"> {weather?.main.temp.toFixed()}  </h1>
               </div>
               <div className="description">
-                <p>{weather?.weather[0].main}</p>
+                <p>{weather?.weather?.[0].main}</p>
               </div>
 
               {weather?.name !=undefined &&
