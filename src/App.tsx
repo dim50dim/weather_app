@@ -19,7 +19,7 @@ const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
   name:string;
 }  
 function App() {
-  // const [data,setDate] = useState({})
+  
   const [weather, setWeather] = useState<WeatherData | null>(null);
 
   const [location,setLocation] = useState('');
