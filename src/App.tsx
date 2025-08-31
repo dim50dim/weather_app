@@ -13,6 +13,9 @@ const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
     pressure: number;
     humidity: number;
   };
+  sys:{
+    country:string
+  };
   wind:{
     speed:number;
   }
