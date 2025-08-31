@@ -56,13 +56,14 @@ const url =  `https://api.openweathermap.org/data/2.5/weather?q=${location}&unit
                   <p>{weather?.name}</p>
              </div>
               <div className="temp">
-                   <h1 className="font-bold"> {weather?.main.temp.toFixed()}  </h1>
+                   {/* <h1 className="font-bold"> {weather?.main.temp.toFixed()}  </h1> */}
+                                  {weather?.main ? <p className='bold'>{weather?.main.feels_like.toFixed()}°C</p> : null}
               </div>
               <div className="description">
                 <p>{weather?.weather?.[0].main}</p>
               </div>
 
-              {weather?.name !=undefined &&
+              {weather?.name !== undefined &&
                    <div className="bottom">
               <div className="feels">
                    <p className="font-bold">{weather?.main.feels_like.toFixed()}</p>
